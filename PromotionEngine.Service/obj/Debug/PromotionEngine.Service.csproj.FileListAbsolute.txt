@@ -1,0 +1,15 @@
+E:\test\PromotionEngine.Service\obj\Debug\PromotionEngine.Service.csprojAssemblyReference.cache
+E:\test\PromotionEngine.Service\obj\Debug\PromotionEngine.Service.csproj.CoreCompileInputs.cache
+E:\test\PromotionEngine.Service\bin\Debug\PromotionEngine.Service.dll.config
+E:\test\PromotionEngine.Service\bin\Debug\PromotionEngine.Service.dll
+E:\test\PromotionEngine.Service\bin\Debug\PromotionEngine.Service.pdb
+E:\test\PromotionEngine.Service\bin\Debug\EntityFramework.dll
+E:\test\PromotionEngine.Service\bin\Debug\EntityFramework.SqlServer.dll
+E:\test\PromotionEngine.Service\bin\Debug\PromotionEngine.Model.dll
+E:\test\PromotionEngine.Service\bin\Debug\PromotionEngine.Model.pdb
+E:\test\PromotionEngine.Service\bin\Debug\PromotionEngine.Model.dll.config
+E:\test\PromotionEngine.Service\bin\Debug\EntityFramework.xml
+E:\test\PromotionEngine.Service\bin\Debug\EntityFramework.SqlServer.xml
+E:\test\PromotionEngine.Service\obj\Debug\PromotionEngine.Service.csproj.CopyComplete
+E:\test\PromotionEngine.Service\obj\Debug\PromotionEngine.Service.dll
+E:\test\PromotionEngine.Service\obj\Debug\PromotionEngine.Service.pdb

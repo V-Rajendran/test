@@ -1,0 +1,147 @@
+﻿@using PromotionEngine.Model.ViewModel
+@model SKU_Unit_Price_ViewModel
+@{
+    ViewBag.Title = "Promotions";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Promotions</h2>
+
+<div>
+    <div>
+
+        <div>
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+            <div>
+                <div class="row" style="padding-bottom: 20px;">
+                    <div class="col-md-3">
+                        <label>Product</label>
+                        @Html.DropDownList("ProductId", new SelectList(ViewBag.Products, "Id", "Sku"), "Please select", new { @id = "ddlProducts" })
+                    </div>
+                    <div class="col-md-3">
+                        <label>Unit</label>
+                        <input id="txtUnit" type="text" />
+                    </div>
+                    <div class="col-md-3">
+                        <button onclick="CalculateNetPrice()">Add to cart</button>
+                    </div>
+
+                </div>
+
+                <table cellpadding="8" cellspacing="6" border="1" style="width: 50%;">
+                    <tr>
+                        <td valign="top">
+                            <table cellpadding="8" cellspacing="6" border="1" id="orderedProductsTbl" style="width: 100%;">
+                                <thead>
+                                    <tr>
+                                        <td>
+                                            Product
+                                        </td>
+                                        <td>
+                                            Unit
+                                        </td>
+                                        <td>
+                                            Price
+                                        </td>
+                                    </tr>
+                                </thead>
+                                <tbody id="orderedProductsTblBody"></tbody>
+                                <tfoot>
+                                    <tr>
+                                        <td colspan="3" align="right" id="cart_total"></td>
+                                    </tr>
+                                </tfoot>
+                            </table>
+                        </td>
+                    </tr>
+                </table>
+                <br>
+                <br>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+
+    //create array that will hold all ordered products
+    var shoppingCart = [];
+
+    //this function manipulates DOM and displays content of our shopping cart
+
+    function displayShoppingCart() {
+        var orderedProductsTblBody = document.getElementById("orderedProductsTblBody");
+        //ensure we delete all previously added rows from ordered products table
+        while (orderedProductsTblBody.rows.length > 0) {
+            orderedProductsTblBody.deleteRow(0);
+        }
+
+        //variable to hold total price of shopping cart
+        var cart_total_price = 0;
+        //iterate over array of objects
+        for (var product in shoppingCart) {
+            //add new row
+            var row = orderedProductsTblBody.insertRow();
+            //create three cells for product properties
+            var cellName = row.insertCell(0);
+            var cellDescription = row.insertCell(1);
+            var cellPrice = row.insertCell(2);
+            cellPrice.align = "right";
+            //fill cells with values from current product object of our array
+            cellName.innerHTML = shoppingCart[product].Name;
+            cellDescription.innerHTML = shoppingCart[product].Description;
+            cellPrice.innerHTML = shoppingCart[product].Price;
+            cart_total_price += shoppingCart[product].Price;
+        }
+        //fill total cost of our shopping cart
+        document.getElementById("cart_total").innerHTML = cart_total_price;
+    }
+
+    function AddNewProduct() {
+        var product = element.options[element.selectedIndex].value;
+        var unit = document.getElementById("txtUnit").value;
+    }
+
+
+    function CalculateNetPrice() {
+        var element = document.getElementById("ddlProducts");
+        var product = element.options[element.selectedIndex].value;
+        var unit = document.getElementById("txtUnit").value;
+        var model = {
+            product: product,
+            unit: unit
+        };
+
+        var url = "/PromotionEngine/GetNetPrice/"
+
+        $.ajax({
+            url: url,
+            data: {
+                'product': product,
+                'unit': unit
+            },
+            type: "post",
+            success: function (result) {
+                //document.getElementById("txtNetPrice").value = result;
+                var singleProduct = {};
+                //Fill the product object with data
+                var element = document.getElementById("ddlProducts");
+                singleProduct.Name = element.options[element.selectedIndex].innerHTML;
+                singleProduct.Description = document.getElementById("txtUnit").value;
+                //singleProduct.Price = CalculateNetPrice();
+                //Add newly created product to our shopping cart
+                singleProduct.Price = parseInt(result);
+                shoppingCart.push(singleProduct);
+                console.log(shoppingCart);
+                displayShoppingCart();
+            },
+            error: function (xhr, ajaxOptions, thrownError) {
+                alert('error');
+            }
+        });
+    }
+
+</script>
+
