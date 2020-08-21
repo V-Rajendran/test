@@ -24,12 +24,21 @@ namespace PromotionEngine.Controllers
             return View();
         }
 
+        /// <summary>
+        /// Add New Product
+        /// </summary>
+        /// <returns>Add New Product View</returns>
         [HttpGet]
         public ActionResult AddNewProduct()
         {
             return View();
         }
-
+        /// <summary>
+        /// Add New Product
+        /// </summary>
+        /// <param name="product"></param>
+        /// <param name="unitPrice"></param>
+        /// <returns></returns>
         [HttpPost]
         public ActionResult AddNewProduct(string product, int unitPrice)
         {
@@ -37,6 +46,10 @@ namespace PromotionEngine.Controllers
             return View();
         }
 
+        /// <summary>
+        /// Promotion View
+        /// </summary>
+        /// <returns>View</returns>
         [HttpGet]
         public ActionResult Promotions()
         {
@@ -51,6 +64,12 @@ namespace PromotionEngine.Controllers
             
         }
 
+        /// <summary>
+        /// Get Net Price
+        /// </summary>
+        /// <param name="product"></param>
+        /// <param name="unit"></param>
+        /// <returns>Net Price</returns>
         public decimal GetNetPrice(string product, int unit)
         {
             decimal netPrice = _promotionEngineBusiness.CalculateNetPrice(product, unit);

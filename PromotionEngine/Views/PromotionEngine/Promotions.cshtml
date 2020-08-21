@@ -9,9 +9,7 @@
 
 <div>
     <div>
-
         <div>
-            
             <div>
                 <div class="row" style="padding-bottom: 20px;">
                     <div class="col-md-3">
@@ -98,12 +96,6 @@
         document.getElementById("cart_total").innerHTML = cart_total_price;
     }
 
-    function AddNewProduct() {
-        var product = element.options[element.selectedIndex].value;
-        var unit = document.getElementById("txtUnit").value;
-    }
-
-
     function CalculateNetPrice() {
         var element = document.getElementById("ddlProducts");
         var product = element.options[element.selectedIndex].value;
@@ -119,15 +111,11 @@
             },
             type: "post",
             success: function (result) {
-                //document.getElementById("txtNetPrice").value = result;
                 var singleProduct = {};
-                //Fill the product object with data
                 var element = document.getElementById("ddlProducts");
                 singleProduct.Name = element.options[element.selectedIndex].innerHTML;
                 singleProduct.Description = document.getElementById("txtUnit").value;
-                //singleProduct.Price = CalculateNetPrice();
-                //Add newly created product to our shopping cart
-                singleProduct.Price = parseInt(result);
+                 singleProduct.Price = parseInt(result);
                 shoppingCart.push(singleProduct);
                 console.log(shoppingCart);
                 displayShoppingCart();
