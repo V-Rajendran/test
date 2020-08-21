@@ -11,8 +11,7 @@
     <div>
 
         <div>
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-
+            
             <div>
                 <div class="row" style="padding-bottom: 20px;">
                     <div class="col-md-3">
@@ -109,11 +108,7 @@
         var element = document.getElementById("ddlProducts");
         var product = element.options[element.selectedIndex].value;
         var unit = document.getElementById("txtUnit").value;
-        var model = {
-            product: product,
-            unit: unit
-        };
-
+        
         var url = "/PromotionEngine/GetNetPrice/"
 
         $.ajax({

@@ -10,5 +10,6 @@ namespace PromotionEngine.Service.Repository.Interface
     public interface IPromorionEngineRepository
     {
         List<SKU_UNIT_PRICE> GetProductList();
+        void AddNewProduct(string product, int unitPrice);
     }
 }

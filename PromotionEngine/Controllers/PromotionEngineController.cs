@@ -31,8 +31,9 @@ namespace PromotionEngine.Controllers
         }
 
         [HttpPost]
-        public ActionResult AddNewProduct(SKU_Unit_Price_ViewModel viewModel)
+        public ActionResult AddNewProduct(string product, int unitPrice)
         {
+            _promotionEngineBusiness.AddNewProduct(product, unitPrice);
             return View();
         }
 

@@ -20,6 +20,11 @@ namespace PromotionEngine.Service.BusinessLogicFacade
             promotionEngineRepository = new PromorionEngineRepositoryImplementation();
         }
 
+        public void AddNewProduct(string product, int unitPrice)
+        {
+            promotionEngineRepository.AddNewProduct(product, unitPrice);
+        }
+
         public decimal CalculateNetPrice(string product, int unit)
         {
             decimal netPrice = 0;

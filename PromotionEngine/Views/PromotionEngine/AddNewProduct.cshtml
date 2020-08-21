@@ -4,5 +4,80 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>AddNewProduct</h2>
+
+<!-- Button trigger modal -->
+
+
+<h2>New Product</h2>
+
+<div>
+    <div>
+
+        <div>
+
+            <div>
+                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+                    Add New Product
+                </button>
+
+                <!-- Modal -->
+                <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                <div class="form-control">
+                                    <label>Product</label>
+                                    <input id="txtProduct" type="text" />
+
+                                    <label>Unit Price</label>
+                                    <input id="txtUnitPrice" type="text" />
+                                </div>
+
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                <button type="button" class="btn btn-primary" onclick="AddNewProduct()">Save changes</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+<script>
+    function AddNewProduct() {
+        var product = document.getElementById("txtProduct").value;
+        var unitPrice = document.getElementById("txtUnitPrice").value;
+
+        var url = "/PromotionEngine/AddNewProduct/"
+
+        $.ajax({
+            url: url,
+            data: {
+                'product': product,
+                'unitPrice': unitPrice
+            },
+            type: "post",
+            success: function (result) {
+                $('#exampleModal').modal('hide');
+                alert("Product added successfully");
+            },
+            error: function (xhr, ajaxOptions, thrownError) {
+                alert('error');
+            }
+        });
+    }
+</script>
 

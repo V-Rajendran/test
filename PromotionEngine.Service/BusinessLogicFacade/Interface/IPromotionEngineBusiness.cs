@@ -11,5 +11,6 @@ namespace PromotionEngine.Service.BusinessLogicFacade.Interface
     {
         List<SKU_Unit_Price_ViewModel> GetProductList();
         decimal CalculateNetPrice(string product, int unit);
+        void AddNewProduct(string product, int unitPrice);
     }
 }
